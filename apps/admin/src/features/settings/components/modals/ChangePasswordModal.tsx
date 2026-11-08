@@ -1,6 +1,5 @@
 import { useMutation } from '@tanstack/react-query'
 import { useState } from 'react'
-import { useNavigate } from 'react-router'
 import { toast } from 'sonner'
 
 import { resetAllCollections } from '~/data/resource/collection'
@@ -13,10 +12,13 @@ import { authClient } from '~/utils/authjs/auth'
 
 import { getErrorMessage } from '../../utils/settings'
 
-function ChangePasswordModal() {
+interface ChangePasswordModalProps {
+  onLoggedOut: () => void
+}
+
+function ChangePasswordModal({ onLoggedOut }: ChangePasswordModalProps) {
   const { t } = useI18n()
   const modal = useModal<boolean>()
-  const navigate = useNavigate()
   const [currentPassword, setCurrentPassword] = useState('')
   const [newPassword, setNewPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
@@ -44,7 +46,7 @@ function ChangePasswordModal() {
       modal.close(true)
       await authClient.signOut()
       resetAllCollections()
-      navigate('/login')
+      onLoggedOut()
     },
   })
 
@@ -93,10 +95,10 @@ function ChangePasswordModal() {
   )
 }
 
-export function presentChangePassword() {
+export function presentChangePassword(onLoggedOut: () => void) {
   return present(
     ChangePasswordModal,
-    {},
+    { onLoggedOut },
     { modalProps: { popupStyle: { width: 'min(92vw, 28rem)' } } },
   )
 }

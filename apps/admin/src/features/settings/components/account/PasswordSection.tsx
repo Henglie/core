@@ -1,4 +1,5 @@
 import { Lock } from 'lucide-react'
+import { useNavigate } from 'react-router'
 
 import { useI18n } from '~/i18n'
 import { Button } from '~/ui/primitives/button'
@@ -8,12 +9,13 @@ import { SettingsSection } from '../SettingsPrimitives'
 
 export function PasswordSection() {
   const { t } = useI18n()
+  const navigate = useNavigate()
   return (
     <SettingsSection
       actions={
         <Button
           onClick={() => {
-            void presentChangePassword()
+            void presentChangePassword(() => navigate('/login'))
           }}
           type="button"
           variant="subtle"
