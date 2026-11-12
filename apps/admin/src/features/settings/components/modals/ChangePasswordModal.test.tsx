@@ -53,4 +53,5 @@ it('opens the change-password modal when ModalRoot is outside the router', async
   await act(async () => button!.click())
 
   expect(document.querySelector('form')).not.toBeNull()
+  expect(document.querySelectorAll('input[type="password"]')).toHaveLength(3)
 })
