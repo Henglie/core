@@ -78,9 +78,19 @@ type SocialOption =
 
 export const socialOptions: readonly SocialOption[] = [
   { label: 'GitHub', value: 'github' },
+  { label: 'X', value: 'x' },
+  { label: 'Twitter', value: 'twitter' },
+  { label: 'Bluesky', value: 'bluesky' },
+  { label: 'Telegram', value: 'telegram' },
+  { label: 'Discord', value: 'discord' },
   { label: 'Weibo', value: 'weibo' },
   { labelKey: 'settings.social.netease', value: 'netease' },
   { labelKey: 'settings.social.bilibili', value: 'bilibili' },
+  { label: 'Steam', value: 'steam' },
+  { label: 'QQ', value: 'qq' },
+  { label: 'WeChat', value: 'wechat' },
+  { label: 'Email', value: 'mail' },
+  { label: 'RSS', value: 'rss' },
 ] as const
 
 export const staticGroupsBefore: SettingsGroupSummary[] = [
